@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Snake
 {
@@ -10,7 +11,13 @@ namespace Snake
 
         private Coordinate? _lastCoordinate;
         private Coordinate? _lastFeed;
-        private Coordinate _pointsDisplay = new Coordinate(0, 0);
+        private Coordinate _pointsDisplay = new Coordinate(Console.WindowWidth - 15, 0);
+
+        public bool ExcludeCollision(List<Coordinate> snake)
+        {
+            return snake.Distinct().Count() == snake.Count;
+        }
+
         public void UpdateSnake(List<Coordinate> snake)
         {
             if (_lastCoordinate != null)
@@ -29,6 +36,15 @@ namespace Snake
 
             Console.SetCursorPosition(1, 24);
             _lastCoordinate = snake[snake.Count - 1];
+        }
+
+        public void AbortGame()
+        {
+            Console.SetCursorPosition(0, 0);
+            Console.WriteLine("###################");
+            Console.WriteLine("#### GAME OVER ####");
+            Console.WriteLine("###################");
+            Environment.Exit(0);
         }
 
         internal void UpdatePoints(int points)

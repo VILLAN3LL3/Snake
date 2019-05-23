@@ -9,9 +9,9 @@ namespace Snake
         {
             return new List<Coordinate>
             {
-                new Coordinate(30, 10),
+                new Coordinate(32, 10),
                 new Coordinate(31, 10),
-                new Coordinate(32, 10)
+                new Coordinate(30, 10)
             };
         }
 

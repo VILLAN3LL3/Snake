@@ -14,17 +14,24 @@ namespace Snake
             {
                 interactors.StartGame((snake, points, feed) =>
                 {
-                    ui.UpdateSnake(snake);
-                    ui.UpdatePoints(points);
-                    ui.UpdateFeed(feed);
-
+                    if (ui.ExcludeCollision(snake))
+                    {
+                        ui.UpdateSnake(snake);
+                        ui.UpdatePoints(points);
+                        ui.UpdateFeed(feed);
+                    }
+                    else
+                    {
+                        ui.AbortGame();
+                    }
                 });
             };
 
+
             ui.ChangeDirection += direction =>
-            {
-                interactors.ChangeDirection(direction);
-            };
+                {
+                    interactors.ChangeDirection(direction);
+                };
 
             ui.Run();
         }
