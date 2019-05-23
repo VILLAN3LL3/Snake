@@ -10,7 +10,7 @@ namespace Snake
 
         private Coordinate? _lastCoordinate;
         private Coordinate? _lastFeed;
-        private Coordinate _pointsDisplay = new Coordinate(1, 1);
+        private Coordinate _pointsDisplay = new Coordinate(0, 0);
         public void UpdateSnake(List<Coordinate> snake)
         {
             if (_lastCoordinate != null)

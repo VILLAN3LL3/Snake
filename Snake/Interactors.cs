@@ -18,6 +18,7 @@ namespace Snake
 
         public void StartGame(Action<List<Coordinate>, int, Coordinate> onNewSnake)
         {
+            Console.Clear();
             _snake = Snakes.NewSnake();
             _direction = Snakes.InitialDirection();
             _feed = Snakes.NewFeed();
