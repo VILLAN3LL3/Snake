@@ -7,6 +7,8 @@ namespace Snake
         private static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.Unicode;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.BackgroundColor = ConsoleColor.Black;
             Console.Clear();
             Console.Write("Neues Spiel = N Spiel verlassen = X");
             var interactors = new Interactors();
