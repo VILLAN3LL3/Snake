@@ -8,6 +8,7 @@ namespace Snake
         {
             Console.OutputEncoding = System.Text.Encoding.Unicode;
             Console.Clear();
+            Console.Write("Neues Spiel = N Spiel verlassen = X");
             var interactors = new Interactors();
             var ui = new Ui();
 
