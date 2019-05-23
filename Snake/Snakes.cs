@@ -58,6 +58,31 @@ namespace Snake
                     throw new InvalidOperationException($"Unknown enum value {direction}.");
             }
 
+            return AdjustCoordinate(coordinate);
+        }
+
+        private static Coordinate AdjustCoordinate(Coordinate coordinate)
+        {
+            if (coordinate.X < 1)
+            {
+                coordinate.X = Console.WindowWidth - 1;
+            }
+
+            if (coordinate.X >= Console.WindowWidth)
+            {
+                coordinate.X = 1;
+            }
+
+            if (coordinate.Y < 1)
+            {
+                coordinate.Y = Console.WindowHeight;
+            }
+
+            if (coordinate.Y > Console.WindowHeight)
+            {
+                coordinate.Y = 1;
+            }
+
             return coordinate;
         }
 
