@@ -9,5 +9,23 @@
             X = x;
             Y = y;
         }
+
+        public bool Equals(Coordinate other)
+        {
+            return X == other.X && Y == other.Y;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Coordinate other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (X * 397) ^ Y;
+            }
+        }
     }
 }

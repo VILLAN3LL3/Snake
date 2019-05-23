@@ -12,8 +12,13 @@ namespace Snake
 
             ui.StartGame += () =>
             {
-                interactors.StartGame(snake =>
-                ui.UpdateSnake(snake));
+                interactors.StartGame((snake, points, feed) =>
+                {
+                    ui.UpdateSnake(snake);
+                    ui.UpdatePoints(points);
+                    ui.UpdateFeed(feed);
+
+                });
             };
 
             ui.ChangeDirection += direction =>

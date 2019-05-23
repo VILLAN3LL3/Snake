@@ -9,6 +9,8 @@ namespace Snake
         public event Action<Direction> ChangeDirection;
 
         private Coordinate? _lastCoordinate;
+        private Coordinate? _lastFeed;
+        private Coordinate _pointsDisplay = new Coordinate(1, 1);
         public void UpdateSnake(List<Coordinate> snake)
         {
             if (_lastCoordinate != null)
@@ -27,6 +29,30 @@ namespace Snake
 
             Console.SetCursorPosition(1, 24);
             _lastCoordinate = snake[snake.Count - 1];
+        }
+
+        internal void UpdatePoints(int points)
+        {
+            Console.SetCursorPosition(_pointsDisplay.X, _pointsDisplay.Y);
+            Console.Write($"{points} Punkte");
+        }
+
+        public void UpdateFeed(Coordinate feed)
+        {
+            if (_lastFeed != null)
+            {
+                var x = _lastFeed.Value.X;
+                var y = _lastFeed.Value.Y;
+                Console.SetCursorPosition(x, y);
+                Console.Write(" ");
+            }
+
+
+            Console.SetCursorPosition(feed.X, feed.Y);
+            Console.Write("o");
+
+            Console.SetCursorPosition(1, 24);
+            _lastFeed = feed;
         }
 
         public void Run()

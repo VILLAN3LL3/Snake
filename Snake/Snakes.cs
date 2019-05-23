@@ -26,8 +26,13 @@ namespace Snake
         {
             Coordinate frontCoordinate = snake[0];
             Coordinate newFrontCoordinate = MoveCoordinate(frontCoordinate, direction);
-            snake.RemoveAt(snake.Count - 1);
             snake.Insert(0, newFrontCoordinate);
+            return snake;
+        }
+
+        public static List<Coordinate> ShortenSnake(List<Coordinate> snake)
+        {
+            snake.RemoveAt(snake.Count - 1);
             return snake;
         }
 
@@ -54,6 +59,23 @@ namespace Snake
             }
 
             return coordinate;
+        }
+
+        internal static int CalcPoints(List<Coordinate> snake, int points)
+        {
+            return points += snake.Count;
+        }
+
+        public static Coordinate NewFeed()
+        {
+            var x = new Random().Next(1, 80);
+            var y = new Random().Next(1, 23);
+            return new Coordinate(x, y);
+        }
+
+        public static bool SnakeIsEating(List<Coordinate> snake, Coordinate feed)
+        {
+            return snake[0].Equals(feed);
         }
     }
 }
