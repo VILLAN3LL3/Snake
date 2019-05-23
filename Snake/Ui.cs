@@ -28,10 +28,12 @@ namespace Snake
                 Console.Write(" ");
             }
 
-            foreach (Coordinate coordinate in snake)
+            Console.SetCursorPosition(snake[0].X, snake[0].Y);
+            Console.Write("\u0298");
+            foreach (Coordinate coordinate in snake.Skip(1))
             {
                 Console.SetCursorPosition(coordinate.X, coordinate.Y);
-                Console.Write("X");
+                Console.Write("\u039F");
             }
 
             Console.SetCursorPosition(1, 24);
@@ -65,7 +67,7 @@ namespace Snake
 
 
             Console.SetCursorPosition(feed.X, feed.Y);
-            Console.Write("o");
+            Console.Write("\u0239");
 
             Console.SetCursorPosition(1, 24);
             _lastFeed = feed;

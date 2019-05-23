@@ -6,6 +6,7 @@ namespace Snake
     {
         private static void Main(string[] args)
         {
+            Console.OutputEncoding = System.Text.Encoding.Unicode;
             Console.Clear();
             var interactors = new Interactors();
             var ui = new Ui();
