@@ -7,6 +7,7 @@ namespace Snake
     public class Ui
     {
         public event Action StartGame;
+        public event Action ShowHighscore;
         public event Action<Direction> ChangeDirection;
 
         private Coordinate? _lastCoordinate;
@@ -41,6 +42,21 @@ namespace Snake
             _lastCoordinate = snake[snake.Count - 1];
         }
 
+        internal void UpdateHighscore(IEnumerable<HighscoreElement> highscore)
+        {
+            Console.Clear();
+            Console.SetCursorPosition(0, 0);
+            Console.WriteLine("###################");
+            Console.WriteLine("#### Highscore ####");
+            Console.WriteLine("###################");
+            Console.WriteLine();
+            for (var i = 1; i <= highscore.Count(); i++)
+            {
+                HighscoreElement item = highscore.ElementAt(i - 1);
+                Console.WriteLine($"{i}. {item.UserName}: {string.Format("{0:n0}", item.Points)} Punkte");
+            }
+        }
+
         internal void UpdateLevel(int level)
         {
             Console.SetCursorPosition(_levelDisplay.X, _levelDisplay.Y);
@@ -59,6 +75,7 @@ namespace Snake
             Console.WriteLine("##################################");
             Console.WriteLine();
             Console.WriteLine("Neues Spiel = N");
+            Console.WriteLine("Highscore anzeigen = H");
             Console.WriteLine("Spiel verlassen = X");
         }
         public void AbortGame()
@@ -116,6 +133,9 @@ namespace Snake
                         break;
                     case ConsoleKey.N:
                         StartGame();
+                        break;
+                    case ConsoleKey.H:
+                        ShowHighscore();
                         break;
                 }
             } while (consoleKey != ConsoleKey.X);

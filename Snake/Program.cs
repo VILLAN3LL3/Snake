@@ -1,18 +1,23 @@
-﻿namespace Snake
+﻿using System;
+
+namespace Snake
 {
     internal class Program
     {
+        private static Interactors _interactors;
+
         private static void Main(string[] args)
         {
 
-            var interactors = new Interactors();
+            AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
+            _interactors = new Interactors();
             var ui = new Ui();
 
             ui.PrepareConsole();
 
             ui.StartGame += () =>
             {
-                interactors.StartGame((snake, points, feed, level) =>
+                _interactors.StartGame((snake, points, feed, level) =>
                 {
                     if (ui.ExcludeCollision(snake))
                     {
@@ -28,13 +33,25 @@
                 });
             };
 
+            ui.ShowHighscore += () =>
+            {
+                _interactors.UpdateHighscore(highscore =>
+                {
+                    ui.UpdateHighscore(highscore);
+                });
+            };
 
             ui.ChangeDirection += direction =>
                 {
-                    interactors.ChangeDirection(direction);
+                    _interactors.ChangeDirection(direction);
                 };
 
             ui.Run();
+        }
+
+        private static void CurrentDomain_ProcessExit(object sender, EventArgs e)
+        {
+            _interactors.SerializeHighscsore();
         }
     }
 }
