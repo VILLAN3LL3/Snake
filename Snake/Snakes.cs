@@ -5,6 +5,8 @@ namespace Snake
 {
     public static class Snakes
     {
+
+
         public static List<Coordinate> NewSnake()
         {
             return new List<Coordinate>
@@ -73,14 +75,14 @@ namespace Snake
                 coordinate.X = 1;
             }
 
-            if (coordinate.Y < 1)
+            if (coordinate.Y < 3)
             {
                 coordinate.Y = Console.WindowHeight;
             }
 
             if (coordinate.Y > Console.WindowHeight)
             {
-                coordinate.Y = 1;
+                coordinate.Y = 3;
             }
 
             return coordinate;
@@ -94,13 +96,18 @@ namespace Snake
         public static Coordinate NewFeed()
         {
             var x = new Random().Next(1, 80);
-            var y = new Random().Next(1, 23);
+            var y = new Random().Next(3, 23);
             return new Coordinate(x, y);
         }
 
         public static bool SnakeIsEating(List<Coordinate> snake, Coordinate feed)
         {
             return snake[0].Equals(feed);
+        }
+
+        public static bool SnakeReachedNextLevel(List<Coordinate> snake)
+        {
+            return snake.Count % 5 == 0;
         }
     }
 }

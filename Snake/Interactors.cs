@@ -10,13 +10,14 @@ namespace Snake
         private readonly TimerProvider _timer;
         private Coordinate _feed;
         private int _points;
+        private int _level = 1;
 
         public Interactors()
         {
             _timer = new TimerProvider();
         }
 
-        public void StartGame(Action<List<Coordinate>, int, Coordinate> onNewSnake)
+        public void StartGame(Action<List<Coordinate>, int, Coordinate, int> onNewSnake)
         {
             Console.Clear();
             _snake = Snakes.NewSnake();
@@ -29,6 +30,11 @@ namespace Snake
                 if (Snakes.SnakeIsEating(_snake, _feed))
                 {
                     _feed = Snakes.NewFeed();
+                    if (Snakes.SnakeReachedNextLevel(_snake))
+                    {
+                        _level++;
+                        _timer.SpeedUpTimer();
+                    }
                 }
                 else
                 {
@@ -36,7 +42,8 @@ namespace Snake
                 }
 
                 _points = Snakes.CalcPoints(_snake, _points);
-                onNewSnake(_snake, _points, _feed);
+
+                onNewSnake(_snake, _points, _feed, _level);
             });
         }
 

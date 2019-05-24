@@ -12,6 +12,7 @@ namespace Snake
         private Coordinate? _lastCoordinate;
         private Coordinate? _lastFeed;
         private Coordinate _pointsDisplay = new Coordinate(Console.WindowWidth - 15, 0);
+        private Coordinate _levelDisplay = new Coordinate(Console.WindowWidth - 15, 1);
 
         public bool ExcludeCollision(List<Coordinate> snake)
         {
@@ -40,6 +41,12 @@ namespace Snake
             _lastCoordinate = snake[snake.Count - 1];
         }
 
+        internal void UpdateLevel(int level)
+        {
+            Console.SetCursorPosition(_levelDisplay.X, _levelDisplay.Y);
+            Console.Write($"Level:  {level}");
+        }
+
         public void PrepareConsole()
         {
             Console.OutputEncoding = System.Text.Encoding.Unicode;
@@ -66,7 +73,7 @@ namespace Snake
         internal void UpdatePoints(int points)
         {
             Console.SetCursorPosition(_pointsDisplay.X, _pointsDisplay.Y);
-            Console.Write($"{points} Punkte");
+            Console.Write($"Punkte: {points}");
         }
 
         public void UpdateFeed(Coordinate feed)

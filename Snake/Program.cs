@@ -12,13 +12,14 @@
 
             ui.StartGame += () =>
             {
-                interactors.StartGame((snake, points, feed) =>
+                interactors.StartGame((snake, points, feed, level) =>
                 {
                     if (ui.ExcludeCollision(snake))
                     {
                         ui.UpdateSnake(snake);
                         ui.UpdatePoints(points);
                         ui.UpdateFeed(feed);
+                        ui.UpdateLevel(level);
                     }
                     else
                     {
