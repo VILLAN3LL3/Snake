@@ -1,0 +1,15 @@
+﻿[
+        {
+            "UserName": "TestUser1",
+            "Points": 1000000
+        },
+        {
+            "UserName": "TestUser2",
+            "Points": 100000
+        },
+        {
+            "UserName": "TestUser3",
+            "Points": 10000
+        }
+    ]
+

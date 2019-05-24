@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace Snake
 {
@@ -11,10 +13,13 @@ namespace Snake
         private Coordinate _feed;
         private int _points;
         private int _level = 1;
+        private readonly List<HighscoreElement> _highscore;
 
         public Interactors()
         {
             _timer = new TimerProvider();
+            var highscoreFile = File.ReadAllText("Highscore.json");
+            _highscore = JsonConvert.DeserializeObject<List<HighscoreElement>>(highscoreFile);
         }
 
         public void StartGame(Action<List<Coordinate>, int, Coordinate, int> onNewSnake)
