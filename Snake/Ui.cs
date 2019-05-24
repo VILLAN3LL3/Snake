@@ -40,6 +40,20 @@ namespace Snake
             _lastCoordinate = snake[snake.Count - 1];
         }
 
+        public void PrepareConsole()
+        {
+            Console.OutputEncoding = System.Text.Encoding.Unicode;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.CursorVisible = false;
+            Console.Clear();
+            Console.WriteLine("##################################");
+            Console.WriteLine("#### Willkommen bei S N A K E ####");
+            Console.WriteLine("##################################");
+            Console.WriteLine();
+            Console.WriteLine("Neues Spiel = N");
+            Console.WriteLine("Spiel verlassen = X");
+        }
         public void AbortGame()
         {
             Console.SetCursorPosition(0, 0);
